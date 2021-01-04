@@ -4,7 +4,11 @@
 			<view class="list_title">登录密码管理</view>
 			<view class="list_icon"><text class="mix-icon icon-you"></text></view>
 		</navigator>
+<<<<<<< HEAD
 		<navigator url="./payPasswordRule/payPasswordRule" class="install_list">
+=======
+		<navigator url="./payPasswordRule/payPasswordRule" class="install_list"  style="border: 0;">
+>>>>>>> 0108053edf6d02b6776cc017ea0dfd07b2e2b218
 			<view class="list_title">支付密码管理</view>
 			<view class="list_icon"><text class="mix-icon icon-you"></text></view>
 		</navigator>
