@@ -13,11 +13,7 @@
 				<view class="list_icon"><text class="mix-icon icon-you"></text></view>
 				
 			</view>
-<<<<<<< HEAD
 			<navigator url="../passwordRule/passwordRule" class="install_list">
-=======
-			<navigator url="../passwordRule/passwordRule" class="install_list" style="border: 0;">
->>>>>>> 0108053edf6d02b6776cc017ea0dfd07b2e2b218
 				<view class="list_title">密码管理</view>
 				<view class="list_icon">
 					<text class="mix-icon icon-you"></text>
