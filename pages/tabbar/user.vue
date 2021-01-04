@@ -83,7 +83,7 @@
 					<img src="/static/images/我的/u74.png" alt="" />
 					<text>我的余额</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myCollection/myCollection" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u72.png" alt="" />
 					<text>我的收藏</text>
