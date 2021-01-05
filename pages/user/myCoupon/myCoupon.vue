@@ -5,6 +5,7 @@
 				<view class="list_title">未使用</view>
 				<view class="list_title" v-if= "activeShow == 1"><img src="/static/images/我的/u925.png" alt=""></view>
 			</view>
+<<<<<<< HEAD
 			<view class="couponTypeList" @click="activeType(2)">
 				<view class="list_title">已使用</view>
 				<view class="list_title" v-if= "activeShow == 2"><img src="/static/images/我的/u925.png" alt=""></view>
@@ -51,6 +52,13 @@
 					</view>
 				</QSCoupon>
 			</view>
+=======
+			<view class="couponTypeList">已使用</view>
+			<view class="couponTypeList">已过期</view>
+		</view>
+		<view class="couponList">
+			
+>>>>>>> a449c190bc9ad8f5079d3a474912b607f838cb5e
 		</view>
 		<view v-if="list.length == 0" class="noGoods">
 			<view>
@@ -90,6 +98,7 @@
 	}
 </script>
 
+<<<<<<< HEAD
 <style scoped>
 .item{
 	padding: 10px 16px;
@@ -97,6 +106,9 @@
 	border-radius: 5px;
 	margin: 10px;
 }
+=======
+<style>
+>>>>>>> a449c190bc9ad8f5079d3a474912b607f838cb5e
 .couponType{
 	display: flex;
 	height: 50px;
@@ -106,11 +118,11 @@
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
 }
 .list_title{
 	width: 50%;
 	margin: 0 auto;
+<<<<<<< HEAD
 	height: 7px;
 }
 .noGoods{
@@ -179,5 +191,7 @@
 }
 .width100 {
 	width: 100%;
+=======
+>>>>>>> a449c190bc9ad8f5079d3a474912b607f838cb5e
 }
 </style>

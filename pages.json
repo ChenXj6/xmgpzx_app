@@ -1,11 +1,11 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "工品益达"
-			}
-		},
+	{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "工品益达"
+		}
+	},
 		{
 			"path": "pages/tabbar/user",
 			"style": {
@@ -27,6 +27,12 @@
 			}
 		},
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "工品益达"
+			}
+		}
+        ,{
             "path" : "pages/user/install/install",
             "style" :                                                                                    
             {
@@ -83,38 +89,11 @@
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		// "navigationBarTitleText": "工品益达",
+		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	},
-	"tabBar": {
-		"color": "#7A7E83",
-		"selectedColor": "#007AFF",
-		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
-		"list": [{
-				"pagePath": "pages/index/index",
-				"iconPath": "",
-				"selectedIconPath": "",
-				"text": "首页"
-			},
-			// {
-			// 	"pagePath": "pages/shopping/shopping",
-			// 	"iconPath": "",
-			// 	"selectedIconPath": "",
-			// 	"text": "分类购买"
-			// }, {
-			// 	"pagePath": "pages/shopping/MyCart",
-			// 	"iconPath": "../../static/icon/myCar.png",
-			// 	"selectedIconPath": "../../static/icon/myCar2.png",
-			// 	"text": "购物车"
-			// }, 
-			{
-				"pagePath": "pages/tabbar/user",
-				"iconPath": "",
-				"selectedIconPath": "",
-				"text": "我的"
-			}
-		]
+		"app-plus":{
+			"titleNView":false
+		}
 	}
 }
