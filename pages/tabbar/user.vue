@@ -46,29 +46,30 @@
 		<view class="order-wrap">
 			<view class="o-header row">
 				<text class="tit">我的订单</text>
-				<text class="more">查看全部订单</text>
-				<text class="mix-icon icon-you"></text>
+				<view class="more" >
+					<navigator url="../user/myOrder/myOrder?orderType=1">查看全部订单<text class="mix-icon icon-you"></text></navigator>
+				</view>
 			</view>
 			<view class="o-list">
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myOrder/myOrder?orderType=2" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daifukuan"></text> -->
 					<img src="/static/images/我的/u56.png" alt="" />
 					<text>待付款</text>
 					<text class="number">0</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myOrder/myOrder?orderType=3" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daifahuo"></text> -->
 					<img src="/static/images/我的/u54.png" alt="" />
 					<text>待发货</text>
 					<text class="number">0</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myOrder/myOrder?orderType=4" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-yishouhuo"></text> -->
 					<img src="/static/images/我的/u52.png" alt="" />
 					<text>待收货</text>
 					<text class="number">0</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myOrder/myOrder?orderType=6" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u50.png" alt="" />
 					<text>售后</text>
@@ -78,7 +79,7 @@
 		</view>
 		<view class="order-wrap">
 			<view class="o-list">
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myBalance/myBalance" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u74.png" alt="" />
 					<text>我的余额</text>
@@ -110,18 +111,30 @@
 					<img src="/static/images/我的/u78.png" alt="" />
 					<text>收货地址</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/demands/demands" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u378.png" alt="" />
 					<text>产品需求</text>
 				</navigator>
-				<view class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<view class="item center" hover-class="hover-gray" @click="open">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u80.png" alt="" />
 					<text>客服热线</text>
 				</view>
 			</view>
 		</view>
+		<!-- 客服电话 -->
+		<uni-popup ref="telPop" type="bottom">
+		<view class="telPop">
+		<view class="telPop-t radio" @click="telphone">
+		 <uni-icons type="phone-filled" size="35" color="#6a696a"></uni-icons> &nbsp;
+		 <text>呼叫&nbsp;18757815753</text>
+		</view>
+		<view class="telPop-b radio" @click="close()">
+		 <text>取消</text>
+		</view>
+		</view>
+		</uni-popup>
 		<!-- 浏览历史 -->
 		<!-- <view class="option-wrap">
 			<view class="sec-header row">
@@ -162,6 +175,26 @@ export default {
 			historyList: [],
 			hasLogin: true
 		};
+	},
+	methods:{
+		open(){
+			console.log(this.$refs)
+			this.$refs.telPop.open();
+		},
+		close(){
+			this.$refs.telPop.close();
+		},
+		telphone(){
+			uni.makePhoneCall({
+			    phoneNumber: '18757815753',
+				success:function(res){
+					console.log(res)
+				},
+				fail:function(err){
+					console.log(err)
+				}
+			});
+		}
 	}
 };
 </script>
@@ -395,5 +428,42 @@ page {
 			border-radius: 8rpx;
 		}
 	}
+}
+.telPop{
+ width: 100%;
+ height: 200rpx;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-evenly;
+ margin-bottom: 100rpx;
+ z-index: 999;
+ >.telPop-t,.telPop-b{
+  width: 88%;
+  height: 90rpx;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 92rpx;
+  >text{
+   color: #3366CC;
+   font-size: 40rpx;
+  }
+  
+  
+ }
+ >.telPop-t{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  >.icon_box{
+   margin: 20rpx 10rpx 0 0;
+  }
+ }
+ >.telPop-b{
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 15px;
+ }
 }
 </style>
