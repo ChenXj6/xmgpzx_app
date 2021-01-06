@@ -5,20 +5,22 @@
 			<view class="user-wrapper">
 				<view style="display: flex;">
 					<image class="avatar" src="/static/images/我的/u42.png"></image>
-					<view class="cen column" v-if="hasLogin">
-						<text class="username f-m">姓名</text>
+					<view class="cen column" v-if="hasLogin" style="padding: 10px;">
+						<text class="username f-m">阿三</text>
 						<!-- <text class="user-group">手机号码</text> -->
-						<text class="user-iphone">手机号码</text>
+						<text class="user-iphone">12345678110</text>
 					</view>
 					<view class="login-box" v-else><text>请登录</text></view>
 				</view>
 
 				<view style="display: flex;">
 					<navigator url="/pages/user/Profile/Profile" style="margin-right: 10px;">    
-						<img src="/static/images/我的/u46.png" alt="" />
+						<!-- <img src="/static/images/我的/u46.png" alt="" /> -->
+						<uni-icons type="person" size="25" color="#ED7748"></uni-icons>
 					</navigator>
 					<navigator url="/pages/user/install/install">
-						<img src="/static/images/我的/u48.png" alt="" />
+						<!-- <img src="/static/images/我的/u48.png" alt="" /> -->
+						<uni-icons type="gear" size="25" color="#ED7748"></uni-icons>
 					</navigator>
 				</view>
 			</view>
@@ -106,7 +108,7 @@
 					<img src="/static/images/我的/u76.png" alt="" />
 					<text>发票管理</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../address/addressManage/addressManage" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u78.png" alt="" />
 					<text>收货地址</text>
@@ -135,33 +137,6 @@
 		</view>
 		</view>
 		</uni-popup>
-		<!-- 浏览历史 -->
-		<!-- <view class="option-wrap">
-			<view class="sec-header row">
-				<text class="mix-icon icon-lishijilu"></text>
-				<text class="fill">浏览历史</text>
-				<text class="mix-icon icon-lajitong"></text>
-			</view>
-			<scroll-view scroll-x class="h-scroll">
-				<view class="pro-list row"> -->
-		<!-- <image 
-						v-for="(item, index) in historyList"
-						:key="index"
-						:src="item.thumb" 
-						mode="aspectFill"
-						@click="navTo('/pages/product/detail?id='+item.id)"
-					></image> -->
-		<!-- </view>
-			</scroll-view>
-			<mix-list-cell icon="icon-iconfontweixin" iconColor="#fa436a" title="我的钱包" ></mix-list-cell>
-			<mix-list-cell icon="icon-dizhi" iconColor="#5fcda2" title="地址管理" ></mix-list-cell> -->
-		<!-- <mix-list-cell icon="icon-share" iconColor="#9789f7" title="分享" tips="呼朋唤友赢好礼"></mix-list-cell> -->
-		<!-- <mix-list-cell icon="icon-shoucang_xuanzhongzhuangtai" iconColor="#54b4ef" title="我的收藏" ></mix-list-cell>
-			<mix-list-cell icon="icon-pinglun-copy" iconColor="#ee883b" title="意见反馈"></mix-list-cell>
-			<mix-list-cell icon="icon-shezhi1" iconColor="#37b0fb" title="设置" border="" ></mix-list-cell>
-		
-			<mix-modal ref="clearHistoryModal" text="确定要清空浏览记录吗" confirmText="清空" ></mix-modal>
-		</view> -->
 	</view>
 </template>
 
@@ -178,21 +153,15 @@ export default {
 	},
 	methods:{
 		open(){
-			console.log(this.$refs)
 			this.$refs.telPop.open();
+			console.log(this.$md5('18757815753'))
 		},
 		close(){
 			this.$refs.telPop.close();
 		},
 		telphone(){
 			uni.makePhoneCall({
-			    phoneNumber: '18757815753',
-				success:function(res){
-					console.log(res)
-				},
-				fail:function(err){
-					console.log(err)
-				}
+			    phoneNumber: '18757815753'
 			});
 		}
 	}
@@ -262,10 +231,10 @@ page {
 		flex-shrink: 0;
 		width: 130rpx;
 		height: 130rpx;
-		border-radius: 100px;
+		// border-radius: 100px;
 		margin-right: 24rpx;
-		border: 4rpx solid #fff;
-		background-color: #fff;
+		// border: 4rpx solid #fff;
+		// background-color: #fff;
 	}
 	.username {
 		font-size: 34rpx;

@@ -5,11 +5,21 @@
 			<view @click="radioShow = radioShow ? false : true">{{ radioShow | getCk(radioShow) }}</view>
 		</view>
 		<view class="goodsList">
-			<view class="goods_info" v-for="items in list">
-				<view class="goods_active"><radio v-if="radioShow"></radio></view>
-				<view class="goods_img"><img src="/static/images/我的/u305.png" alt="" /></view>
+			<view class="goods_info" v-for="(items,key) in list">
+				<view class="info_left">
+					<view class="goods_active">
+						<!-- <radio v-if="radioShow" :value="items"  :checked="InvoiceId ==''" @click="radio(items)"></radio> -->
+						<checkbox-group v-if="radioShow" @change="changeCheck($event,items.value)">
+							<label>
+								<checkbox :value="items.value" :checked="items.checked">
+								</checkbox>
+							</label>
+						</checkbox-group>
+					</view>
+					<view class="goodsImg"><img src="/static/images/我的/u305.png" alt="" /></view>
+				</view>
 				<view class="goods_data">
-					<view>SH·H10Mn2 埋弧焊丝 4.0(250kg)mm</view>
+					<view class="overHidden">SH·H10Mn2 埋弧焊丝 4.0(250kg)mm</view>
 					<view class="goods_info_stock">
 						<view>仓库：</view>
 						<view>库存：</view>
@@ -57,7 +67,16 @@
 			</view>
 		</uni-popup>
 		<view class="rootNav" v-if="radioShow">
-			<view><radio>全选</radio></view>
+			<view>
+				<!-- <radio value="allRadio" checked = false>全选</radio> -->
+				<checkbox-group @change="changeAll" name="allCheck">
+					<label>
+						<checkbox :value="allCheck.value" :checked="allCheck.checked">
+							全选
+						</checkbox>
+					</label>
+				</checkbox-group>
+			</view>
 			<view><view class="delGoods">删除</view></view>
 		</view>
 	</view>
@@ -69,7 +88,32 @@ export default {
 		return {
 			radioShow: false,
 			orderNum:1,
-			list: [1, 2, 3]
+			list: [
+				{
+					name : '《某天成为公主》',
+					value : '《某天成为公主》',
+					id : '1',
+					whether  : true
+				},
+				{
+					name : '《当神不让》',
+					value : '《当神不让》',
+					id : '2',
+					whether  : true
+				},
+				{
+					name : '《海贼王》',
+					value : '《海贼王》',
+					id : '3',
+					whether  : true
+				}
+			],
+			radioList:[],
+			allCheck : {
+				name : '全选',
+				value : 'all',
+				checked : false	
+			},
 		};
 	},
 	filters: {
@@ -83,6 +127,40 @@ export default {
 		}
 	},
 	methods: {
+		changeAll(e){
+			let that = this;
+			if(e.detail.value.length == 0) {
+				that.list.map(item => this.$set(item, 'checked', false));
+				this.$set(this.allCheck, 'checked', false);
+			}else{
+				that.list.map(item => this.$set(item, 'checked', true));
+				this.$set(this.allCheck, 'checked', true);
+			}
+		},
+		// 多选
+		changeCheck : function(e,val) {
+			let that = this;
+			var items = this.list;
+			var len = this.list.length;
+			var values = e.detail.value;
+			for(var i = 0; i < len; i++) {
+				var item = items[i];
+				if(val == item.value){
+					if(values == item.value){
+						this.$set(item, 'checked', true);
+					}else{
+						this.$set(item, 'checked', false);
+					}
+				}
+				
+			}
+			
+			let arr = [];
+			// 判断选中状态
+			this.list.forEach(item => item.whether  == true ? arr.push(item) : '');
+			var isAll = arr.every(item => item.checked == true);
+			isAll ? this.$set(this.allCheck, 'checked', true) : this.$set(this.allCheck, 'checked', false)
+		},
 		open() {
 			this.$refs.popup.open();
 		},
@@ -104,18 +182,29 @@ view {
 }
 .goods_info {
 	display: flex;
-	height: 200rpx;
+	height: 220rpx;
 	padding: 20rpx;
 	background-color: #fff;
+	border:1px solid #F2F2F2;
 }
 .goods_active {
-	line-height: 160rpx;
-	width: 60rpx;
+	line-height: 150rpx;
+	width: 30%;
+}
+.goodsImg{
+	border: 2rpx solid #f2f2f2;
+	padding: 10rpx;
+	width: 70%;
+	height: 90%;
+}
+.goodsImg img{
+	height: 100%;
+	width: 100%;
 }
 .goods_img {
 	border: 2rpx solid #f2f2f2;
-	height: 160rpx;
-	width: 160rpx;
+	padding: 10rpx;
+	width: 42%;
 }
 .goods_img img {
 	height: 100%;
@@ -123,6 +212,7 @@ view {
 }
 .goods_data {
 	padding: 10rpx 20rpx;
+	flex: 1;
 }
 .goods_info_stock {
 	display: flex;
@@ -157,6 +247,8 @@ view {
 .orderPage{
 	border-radius: 5px;
 	background-color: #fff;
+	margin:0 auto;
+	width: 85%;
 }
 .close_popup{
 	justify-content: flex-end;
@@ -208,5 +300,16 @@ view {
 	border-radius: 0 5px 5px 0;
 	padding: 3px 8px;
 	font-weight: bold;
+}
+.overHidden{
+	white-space:nowrap;
+   overflow:hidden;
+   text-overflow:ellipsis;
+}
+.info_left{
+	display: flex;
+	padding: 10rpx;
+	padding-left: 0;
+	width: 27%;
 }
 </style>

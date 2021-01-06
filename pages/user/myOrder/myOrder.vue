@@ -19,8 +19,8 @@
 			</view>
 		</view>
 		<view class="orderList">
-			<view class="orderTail" @tap="toOrderDetail()">
-				<view class="orderHead">
+			<view class="orderTail">
+				<view class="orderHead" @tap="toOrderDetail()">
 					<view>订单号：234651635</view>
 					<view>待付款</view>
 				</view>
@@ -42,7 +42,7 @@
 						<view class="positon_ab" style="bottom: 25%;left: 40%;">共{{ goodsList.length }}件</view>
 					</view>
 				</view>
-				<view class="orderDetail">
+				<view class="orderDetail" @tap="toOrderDetail()">
 					<view>共{{ goodsList.length }}件</view>
 					<view>￥1111</view>
 				</view>
@@ -79,7 +79,9 @@
 					<view>￥1111</view>
 				</view>
 				<view class="orderOperate ">
-					<view style="flex:1;font-size: 13px;">2020-12-29 10：40：26</view>
+					<view style="flex:1;font-size: 26rpx;">
+						2020-12-29 10：40：26
+					</view>
 					<view style="flex:1;display: flex;" class="flex-end">
 						<view style="color: #666666;border: 1px solid #666666;margin-right: 20rpx;width: 50%;">再次购买</view>
 					</view>

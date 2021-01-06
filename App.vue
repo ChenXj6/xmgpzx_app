@@ -19,4 +19,8 @@
 	page{
 		background: #f2f2f2;
 	}
+	uni-checkbox .uni-checkbox-input {
+		border-radius: 50%;
+	}
+	
 </style>

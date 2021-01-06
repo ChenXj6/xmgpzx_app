@@ -1,6 +1,12 @@
 <template>
-	<view v-if="isShow" ref="ani" class="uni-transition" :class="[ani.in]" :style="'transform:' +transform+';'+stylesObject"
-	 @click="change">
+	<view 
+		v-if="isShow" 
+		ref="ani" 
+		class="uni-transition" 
+		:class="[ani.in]" 
+		:style="'transform:' +transform+';'+stylesObject"
+		@click="change"
+	>
 		 <slot></slot>
 	</view>
 </template>
@@ -47,6 +53,10 @@
 				default () {
 					return {}
 				}
+			},
+			maskBackgroundColor: {
+				type: String,
+				default: 'rgba(0, 0, 0, 0.4)'
 			}
 		},
 		data() {
@@ -74,6 +84,7 @@
 			stylesObject() {
 				let styles = {
 					...this.styles,
+					backgroundColor: this.maskBackgroundColor,
 					'transition-duration': this.duration / 1000 + 's'
 				}
 				let transfrom = ''

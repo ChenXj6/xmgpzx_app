@@ -25,13 +25,13 @@
 					}">
 					<!-- 根据内部比例设置flex属性 -->
 						<view class="padding_15rpx flex_column_between_none fontSize_23rpx" style="flex: 519;">
-							<view class="flex_row" style="height: 100px;border-bottom: 1px dashed #fff;">
+							<view class="flex_row" style="height: 180rpx;border-bottom: 1px dashed #fff;">
 								<view style="font-size: 20px;line-height: 130px;">￥</view>
-								<view class="fontSize_55px flex_row_c_c" style="padding:10px;">
+								<view class="fontSize_100rpx flex_row_c_c" style="padding:10px;">
 									90
 								</view>
 								<view style="text-align: center;padding: 10px;">
-									<view style="font-size: 30px;">
+									<view style="font-size: 50rpx;">
 										优惠券
 									</view>
 									<view class="">
@@ -112,6 +112,7 @@
 	width: 50%;
 	margin: 0 auto;
 	height: 7px;
+	font-size: 30rpx;
 }
 .noGoods{
 	text-align: center;
@@ -148,8 +149,8 @@
 .fontSize_21rpx {
 	font-size: 21rpx;
 }
-.fontSize_55px {
-	font-size: 55px;
+.fontSize_100rpx {
+	font-size: 100rpx;
 	font-weight: bold;
 }
 .fontSize_23rpx {
