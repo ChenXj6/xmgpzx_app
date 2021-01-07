@@ -5,20 +5,22 @@
 			<view class="user-wrapper">
 				<view style="display: flex;">
 					<image class="avatar" src="/static/images/我的/u42.png"></image>
-					<view class="cen column" v-if="hasLogin">
-						<text class="username f-m">姓名</text>
+					<view class="cen column" v-if="hasLogin" style="padding: 10px;">
+						<text class="username f-m">阿三</text>
 						<!-- <text class="user-group">手机号码</text> -->
-						<text class="user-iphone">手机号码</text>
+						<text class="user-iphone">12345678110</text>
 					</view>
 					<view class="login-box" v-else><text>请登录</text></view>
 				</view>
 
 				<view style="display: flex;">
-					<navigator url="/pages/user/Profile/Profile" style="margin-right: 10px;">    
-						<img src="/static/images/我的/u46.png" alt="" />
+					<navigator url="/pages/user/Profile/Profile" style="margin-right: 10px;">
+						<!-- <img src="/static/images/我的/u46.png" alt="" /> -->
+						<uni-icons type="person" size="25" color="#ED7748"></uni-icons>
 					</navigator>
 					<navigator url="/pages/user/install/install">
-						<img src="/static/images/我的/u48.png" alt="" />
+						<!-- <img src="/static/images/我的/u48.png" alt="" /> -->
+						<uni-icons type="gear" size="25" color="#ED7748"></uni-icons>
 					</navigator>
 				</view>
 			</view>
@@ -46,29 +48,33 @@
 		<view class="order-wrap">
 			<view class="o-header row">
 				<text class="tit">我的订单</text>
-				<text class="more">查看全部订单</text>
-				<text class="mix-icon icon-you"></text>
+				<view class="more">
+					<navigator url="../user/myOrder/myOrder?orderType=1">
+						查看全部订单
+						<text class="mix-icon icon-you"></text>
+					</navigator>
+				</view>
 			</view>
 			<view class="o-list">
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myOrder/myOrder?orderType=2" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daifukuan"></text> -->
 					<img src="/static/images/我的/u56.png" alt="" />
 					<text>待付款</text>
 					<text class="number">0</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myOrder/myOrder?orderType=3" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daifahuo"></text> -->
 					<img src="/static/images/我的/u54.png" alt="" />
 					<text>待发货</text>
 					<text class="number">0</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myOrder/myOrder?orderType=4" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-yishouhuo"></text> -->
 					<img src="/static/images/我的/u52.png" alt="" />
 					<text>待收货</text>
 					<text class="number">0</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myOrder/myOrder?orderType=6" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u50.png" alt="" />
 					<text>售后</text>
@@ -78,12 +84,12 @@
 		</view>
 		<view class="order-wrap">
 			<view class="o-list">
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myBalance/myBalance" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u74.png" alt="" />
 					<text>我的余额</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/myCollection/myCollection" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u72.png" alt="" />
 					<text>我的收藏</text>
@@ -105,50 +111,34 @@
 					<img src="/static/images/我的/u76.png" alt="" />
 					<text>发票管理</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../address/addressManage/addressManage" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u78.png" alt="" />
 					<text>收货地址</text>
 				</navigator>
-				<navigator class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<navigator url="../user/demands/demands" class="item center" hover-class="hover-gray" :hover-stay-time="50">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u378.png" alt="" />
 					<text>产品需求</text>
 				</navigator>
-				<view class="item center" hover-class="hover-gray" :hover-stay-time="50">
+				<view class="item center" hover-class="hover-gray" @click="open">
 					<!-- <text class="mix-icon icon-daipingjia"></text> -->
 					<img src="/static/images/我的/u80.png" alt="" />
 					<text>客服热线</text>
 				</view>
 			</view>
 		</view>
-		<!-- 浏览历史 -->
-		<!-- <view class="option-wrap">
-			<view class="sec-header row">
-				<text class="mix-icon icon-lishijilu"></text>
-				<text class="fill">浏览历史</text>
-				<text class="mix-icon icon-lajitong"></text>
+		<!-- 客服电话 -->
+		<uni-popup ref="telPop" type="bottom">
+			<view class="telPop">
+				<view class="telPop-t radio" @click="telphone">
+					<uni-icons type="phone-filled" size="35" color="#6a696a"></uni-icons>
+					&nbsp;
+					<text>呼叫&nbsp;18757815753</text>
+				</view>
+				<view class="telPop-b radio" @click="close()"><text>取消</text></view>
 			</view>
-			<scroll-view scroll-x class="h-scroll">
-				<view class="pro-list row"> -->
-		<!-- <image 
-						v-for="(item, index) in historyList"
-						:key="index"
-						:src="item.thumb" 
-						mode="aspectFill"
-						@click="navTo('/pages/product/detail?id='+item.id)"
-					></image> -->
-		<!-- </view>
-			</scroll-view>
-			<mix-list-cell icon="icon-iconfontweixin" iconColor="#fa436a" title="我的钱包" ></mix-list-cell>
-			<mix-list-cell icon="icon-dizhi" iconColor="#5fcda2" title="地址管理" ></mix-list-cell> -->
-		<!-- <mix-list-cell icon="icon-share" iconColor="#9789f7" title="分享" tips="呼朋唤友赢好礼"></mix-list-cell> -->
-		<!-- <mix-list-cell icon="icon-shoucang_xuanzhongzhuangtai" iconColor="#54b4ef" title="我的收藏" ></mix-list-cell>
-			<mix-list-cell icon="icon-pinglun-copy" iconColor="#ee883b" title="意见反馈"></mix-list-cell>
-			<mix-list-cell icon="icon-shezhi1" iconColor="#37b0fb" title="设置" border="" ></mix-list-cell>
-		
-			<mix-modal ref="clearHistoryModal" text="确定要清空浏览记录吗" confirmText="清空" ></mix-modal>
-		</view> -->
+		</uni-popup>
 	</view>
 </template>
 
@@ -162,6 +152,20 @@ export default {
 			historyList: [],
 			hasLogin: true
 		};
+	},
+	methods: {
+		open() {
+			this.$refs.telPop.open();
+			console.log(this.$md5('18757815753'));
+		},
+		close() {
+			this.$refs.telPop.close();
+		},
+		telphone() {
+			uni.makePhoneCall({
+				phoneNumber: '18757815753'
+			});
+		}
 	}
 };
 </script>
@@ -229,10 +233,10 @@ page {
 		flex-shrink: 0;
 		width: 130rpx;
 		height: 130rpx;
-		border-radius: 100px;
+		// border-radius: 100px;
 		margin-right: 24rpx;
-		border: 4rpx solid #fff;
-		background-color: #fff;
+		// border: 4rpx solid #fff;
+		// background-color: #fff;
 	}
 	.username {
 		font-size: 34rpx;
@@ -394,6 +398,42 @@ page {
 			margin-right: 16rpx;
 			border-radius: 8rpx;
 		}
+	}
+}
+.telPop {
+	width: 100%;
+	height: 200rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	margin-bottom: 100rpx;
+	z-index: 999;
+	> .telPop-t,
+	.telPop-b {
+		width: 88%;
+		height: 90rpx;
+		background-color: #ffffff;
+		margin: 0 auto;
+		text-align: center;
+		line-height: 92rpx;
+		> text {
+			color: #3366cc;
+			font-size: 40rpx;
+		}
+	}
+	> .telPop-t {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 15px;
+		> .icon_box {
+			margin: 20rpx 10rpx 0 0;
+		}
+	}
+	> .telPop-b {
+		height: 80rpx;
+		line-height: 80rpx;
+		border-radius: 15px;
 	}
 }
 </style>

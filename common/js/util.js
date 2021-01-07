@@ -6,7 +6,7 @@ let _debounceTimeout = null,
  * @param {Function} 执行函数
  * @param {Number} delay 延时ms   
  */
-export const debounce = (fn, delay = 500) => {
+export const debounce = (fn, delay=500) => {
 	clearTimeout(_debounceTimeout);
 	_debounceTimeout = setTimeout(() => {
 		fn();
@@ -17,21 +17,21 @@ export const debounce = (fn, delay = 500) => {
  * @param {Function} 执行函数
  * @param {Number} delay 延时ms  
  */
-export const throttle = (fn, delay = 500) => {
-	if (_throttleRunning) {
+export const throttle = (fn, delay=500) => {
+	if(_throttleRunning){
 		return;
 	}
 	_throttleRunning = true;
 	fn();
 	setTimeout(() => {
-		_throttleRunning = false;
+	    _throttleRunning = false;
 	}, delay);
 }
 /**
  * toast
  */
-export const msg = (title = '', param = {}) => {
-	if (!title) return;
+export const msg = (title = '', param={}) => {
+	if(!title) return;
 	uni.showToast({
 		title,
 		duration: param.duration || 1500,
@@ -43,38 +43,17 @@ export const msg = (title = '', param = {}) => {
  * 检查登录
  * @return {Boolean}
  */
-export const isLogin = (options = {}) => {
+export const isLogin = (options={}) => {
 	const token = uni.getStorageSync('uniIdToken');
-	
-	if (token) {
+	if(token){
 		return true;
 	}
+	if(options.nav !== false){
+		uni.navigateTo({
+			url: '/pages/auth/login'
+		})
+	}
 	return false;
-}
-/**
- * 生成sign 
- * 注意:带小数点的不可以使用
- */
-export const makeSign = (data={}) => {
-	var timestamp = Date.parse(new Date()) / 1000;
-	data.timestamp = timestamp
-	var newkey = Object.keys(data).sort();
-	var newObj = {}; //创建一个新的对象，用于存放排好序的键值对
-	for (let i = 0; i < newkey.length; i++) { //遍历newkey数组
-		newObj[newkey[i]] = data[newkey[i]]; //向新创建的对象中按照排好的顺序依次增加键值对
-	}
-	var arr = JSON.stringify(newObj)
-	let len = arr.length;
-	var data1 = arr.substring(1, len - 1); //截取字符串中不包括‘{}’部分
-	var data2 = data1.split(','); //以','分割字符串
-	var jsonArr = []; //创建一个新数组
-	for (let i = 0; i < data2.length; i++) {
-		var str2 = data2[i].replace(/"/g, ""); //去掉data2数据中每一项的""
-		var str3 = str2.replace(/:/, '='); //将str2数据中的每一项中':'替换为'='
-		jsonArr.push(str3); //将str3数据存入数组里面
-	}
-	var result = jsonArr.join('&'); //将两个数据拼接起来
-	return result;
 }
 /**
  * 获取页面栈
@@ -94,10 +73,10 @@ export const prePage = (preIndex = 1) => {
  * @return {String}
  */
 export const date = (format, timeStamp) => {
-	if ('' + timeStamp.length <= 10) {
-		timeStamp = +timeStamp * 1000;
-	} else {
-		timeStamp = +timeStamp;
+	if('' + timeStamp.length <= 10){
+		timeStamp = + timeStamp * 1000;
+	}else{
+		timeStamp = + timeStamp;
 	}
 	let _date = new Date(timeStamp),
 		Y = _date.getFullYear(),
@@ -106,28 +85,21 @@ export const date = (format, timeStamp) => {
 		H = _date.getHours(),
 		i = _date.getMinutes(),
 		s = _date.getSeconds();
-
+	
 	m = m < 10 ? '0' + m : m;
 	d = d < 10 ? '0' + d : d;
 	H = H < 10 ? '0' + H : H;
 	i = i < 10 ? '0' + i : i;
 	s = s < 10 ? '0' + s : s;
 
-	return format.replace(/[YmdHis]/g, key => {
-		return {
-			Y,
-			m,
-			d,
-			H,
-			i,
-			s
-		} [key];
+	return format.replace(/[YmdHis]/g, key=>{
+		return {Y,m,d,H,i,s}[key];
 	});
 }
 //二维数组去重
 export const getUnique = array => {
 	let obj = {}
-	return array.filter((item, index) => {
+    return array.filter((item, index) => {
 		let newItem = item + JSON.stringify(item)
 		return obj.hasOwnProperty(newItem) ? false : obj[newItem] = true
 	})
