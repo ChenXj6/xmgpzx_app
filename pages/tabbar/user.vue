@@ -14,7 +14,7 @@
 				</view>
 
 				<view style="display: flex;">
-					<navigator url="/pages/user/Profile/Profile" style="margin-right: 10px;">    
+					<navigator url="/pages/user/Profile/Profile" style="margin-right: 10px;">
 						<!-- <img src="/static/images/我的/u46.png" alt="" /> -->
 						<uni-icons type="person" size="25" color="#ED7748"></uni-icons>
 					</navigator>
@@ -48,8 +48,11 @@
 		<view class="order-wrap">
 			<view class="o-header row">
 				<text class="tit">我的订单</text>
-				<view class="more" >
-					<navigator url="../user/myOrder/myOrder?orderType=1">查看全部订单<text class="mix-icon icon-you"></text></navigator>
+				<view class="more">
+					<navigator url="../user/myOrder/myOrder?orderType=1">
+						查看全部订单
+						<text class="mix-icon icon-you"></text>
+					</navigator>
 				</view>
 			</view>
 			<view class="o-list">
@@ -127,15 +130,14 @@
 		</view>
 		<!-- 客服电话 -->
 		<uni-popup ref="telPop" type="bottom">
-		<view class="telPop">
-		<view class="telPop-t radio" @click="telphone">
-		 <uni-icons type="phone-filled" size="35" color="#6a696a"></uni-icons> &nbsp;
-		 <text>呼叫&nbsp;18757815753</text>
-		</view>
-		<view class="telPop-b radio" @click="close()">
-		 <text>取消</text>
-		</view>
-		</view>
+			<view class="telPop">
+				<view class="telPop-t radio" @click="telphone">
+					<uni-icons type="phone-filled" size="35" color="#6a696a"></uni-icons>
+					&nbsp;
+					<text>呼叫&nbsp;18757815753</text>
+				</view>
+				<view class="telPop-b radio" @click="close()"><text>取消</text></view>
+			</view>
 		</uni-popup>
 	</view>
 </template>
@@ -151,17 +153,17 @@ export default {
 			hasLogin: true
 		};
 	},
-	methods:{
-		open(){
+	methods: {
+		open() {
 			this.$refs.telPop.open();
-			console.log(this.$md5('18757815753'))
+			console.log(this.$md5('18757815753'));
 		},
-		close(){
+		close() {
 			this.$refs.telPop.close();
 		},
-		telphone(){
+		telphone() {
 			uni.makePhoneCall({
-			    phoneNumber: '18757815753'
+				phoneNumber: '18757815753'
 			});
 		}
 	}
@@ -398,41 +400,40 @@ page {
 		}
 	}
 }
-.telPop{
- width: 100%;
- height: 200rpx;
- display: flex;
- flex-direction: column;
- justify-content: space-evenly;
- margin-bottom: 100rpx;
- z-index: 999;
- >.telPop-t,.telPop-b{
-  width: 88%;
-  height: 90rpx;
-  background-color: #FFFFFF;
-  margin: 0 auto;
-  text-align: center;
-  line-height: 92rpx;
-  >text{
-   color: #3366CC;
-   font-size: 40rpx;
-  }
-  
-  
- }
- >.telPop-t{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  >.icon_box{
-   margin: 20rpx 10rpx 0 0;
-  }
- }
- >.telPop-b{
-  height: 80rpx;
-  line-height: 80rpx;
-  border-radius: 15px;
- }
+.telPop {
+	width: 100%;
+	height: 200rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	margin-bottom: 100rpx;
+	z-index: 999;
+	> .telPop-t,
+	.telPop-b {
+		width: 88%;
+		height: 90rpx;
+		background-color: #ffffff;
+		margin: 0 auto;
+		text-align: center;
+		line-height: 92rpx;
+		> text {
+			color: #3366cc;
+			font-size: 40rpx;
+		}
+	}
+	> .telPop-t {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 15px;
+		> .icon_box {
+			margin: 20rpx 10rpx 0 0;
+		}
+	}
+	> .telPop-b {
+		height: 80rpx;
+		line-height: 80rpx;
+		border-radius: 15px;
+	}
 }
 </style>

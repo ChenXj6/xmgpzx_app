@@ -22,5 +22,8 @@
 	uni-checkbox .uni-checkbox-input {
 		border-radius: 50%;
 	}
-	
+	uni-toast .uni-toast {
+		font-size: 12rpx;
+		padding: 20rpx 30rpx;
+	}
 </style>
