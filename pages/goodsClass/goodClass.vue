@@ -44,19 +44,19 @@
 		<!-- 商品列表 -->
 		<view class="goods_box">
 			<!-- good -->
-			<view class="goods" @click="goodDetail()">
-				<view class="goods_l">
+			<view class="goods" >
+				<view class="goods_l" @click="goodDetail()">
 					<image src="/static/images/首页/u68.png" mode=""></image>
 				</view>
 				<view class="goods_r">
-					<view class="goods_r_item">
+					<view class="goods_r_item" @click="goodDetail()">
 						SH·Y308L 不锈钢药芯焊丝 1.2mmSH·Y308L 不锈钢药芯焊丝 1.2mm		
 					</view>
-					<view class="goods_r_item">
+					<view class="goods_r_item" @click="goodDetail()">
 						<text>仓库：厦门仓</text>
 						<text>库存：89箱</text>
 					</view>
-					<view class="goods_r_item">
+					<view class="goods_r_item" @click="goodDetail()">
 						<text>起订量：10箱</text>
 						<text></text>
 					</view>

@@ -156,7 +156,6 @@ export default {
 	methods: {
 		open() {
 			this.$refs.telPop.open();
-			console.log(this.$md5('18757815753'));
 		},
 		close() {
 			this.$refs.telPop.close();

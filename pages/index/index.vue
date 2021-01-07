@@ -161,6 +161,7 @@ export default {
 	},
 	methods: {
 		open(type) {
+			console.log(this.$refs)
 			if(type == 'open'){
 				this.$refs.telPop.open();
 			}else{

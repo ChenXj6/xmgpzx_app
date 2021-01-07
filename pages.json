@@ -3,7 +3,8 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "工品益达"
+				"navigationBarTitleText": "工品益达",
+				"navigationStyle":"custom"
 			}
 		},
 		{
