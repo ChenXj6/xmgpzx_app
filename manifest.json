@@ -72,15 +72,7 @@
     "mp-toutiao" : {
         "usingComponents" : true
     },
-    "uniStatistics" : {
-        "enable" : false
-    },
-    "h5" : {
-        "router" : {
-            "mode" : "history"
-        },
-        "devServer" : {
-            "https" : false
-        }
+    "uniStatistics": {  
+        "enable": false
     }
 }

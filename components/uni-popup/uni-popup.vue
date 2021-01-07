@@ -1,8 +1,8 @@
 <template>
-	<view v-if="showPopupState" class="uni-popup" :class="[popupstyle]" @touchmove.stop.prevent="clear">
-		<uni-transition v-if="maskShow" :mode-class="['fade']" :styles="maskClass" :maskBackgroundColor="maskBackgroundColor" :duration="duration" :show="showTrans"
+	<view v-if="showPopup" class="uni-popup" :class="[popupstyle]" @touchmove.stop.prevent="clear">
+		<uni-transition v-if="maskShow" :mode-class="['fade']" :styles="maskClass" :duration="duration" :show="showTrans"
 		 @click="onTap" />
-		<uni-transition :mode-class="ani" :styles="transClass" maskBackgroundColor="rgba(,0,0,0,0)" :duration="duration" :show="showTrans" @click="onTap">
+		<uni-transition :mode-class="ani" :styles="transClass" :duration="duration" :show="showTrans" @click="onTap">
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
 				<slot />
 			</view>
@@ -12,6 +12,7 @@
 
 <script>
 	import uniTransition from '../uni-transition/uni-transition.vue'
+	import popup from './popup.js'
 	/**
 	 * PopUp 弹出层
 	 * @description 弹出层组件，为了解决遮罩弹层的问题
@@ -49,10 +50,6 @@
 			maskClick: {
 				type: Boolean,
 				default: true
-			},
-			maskBackgroundColor: {
-				type: String,
-				default: 'rgba(0, 0, 0, .5)'
 			}
 		},
 		provide() {
@@ -60,6 +57,7 @@
 				popup: this
 			}
 		},
+		mixins: [popup],
 		watch: {
 			/**
 			 * 监听type类型
@@ -82,14 +80,15 @@
 			return {
 				duration: 300,
 				ani: [],
-				showPopupState: false,
+				showPopup: false,
 				showTrans: false,
 				maskClass: {
 					'position': 'fixed',
 					'bottom': 0,
 					'top': 0,
 					'left': 0,
-					'right': 0
+					'right': 0,
+					'backgroundColor': 'rgba(0, 0, 0, 0.4)'
 				},
 				transClass: {
 					'position': 'fixed',
@@ -98,14 +97,7 @@
 				},
 				maskShow: true,
 				mkclick: true,
-				popupstyle: 'top',
-				config: {
-					top:'top',
-					// 底部弹出
-					bottom:'bottom',
-					// 居中弹出
-					center:'center'
-				}
+				popupstyle: 'top'
 			}
 		},
 		created() {
@@ -122,7 +114,7 @@
 				e.stopPropagation()
 			},
 			open() {
-				this.showPopupState = true
+				this.showPopup = true
 				this.$nextTick(() => {
 					new Promise(resolve => {
 						clearTimeout(this.timer)
@@ -157,7 +149,7 @@
 					// 自定义关闭事件
 					this.customOpen && this.customClose()
 					this.timer = setTimeout(() => {
-						this.showPopupState = false
+						this.showPopup = false
 					}, 300)
 				})
 			},

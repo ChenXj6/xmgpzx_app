@@ -1,9 +1,6 @@
 <template>
 	<view class="app">
-		<view class="head_img">
-			<view><img src="/static/images/我的/u196.png" alt="" /></view>
-			<view>上传头像</view>
-		</view>
+		<view class="head_img"><img src="/static/images/我的/u196.png" alt="" /></view>
 		<view class="user_data">
 			<view class="data_list">
 				<view class="data_title">用户名：</view>
@@ -51,7 +48,6 @@ page {
 	height: 134px;
 	text-align: center;
 	padding: 10px;
-	padding-bottom: 0;
 }
 .head_img img {
 	width: 30%;
@@ -77,8 +73,5 @@ page {
 	flex: 1;
 	text-align: right;
 	font-size: 14px;
-}
-.margin-top_0{
-	margin-top: 0;
 }
 </style>

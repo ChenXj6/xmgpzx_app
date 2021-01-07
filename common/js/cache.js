@@ -27,12 +27,12 @@ const postfix = '_aszapp'; // 缓存前缀
 function put(k, v, t) {  
     uni.setStorageSync(k, v)   
     let seconds = parseInt(t);  
-    if (seconds > 0) {  
+    if (seconds > 0) { 
         let timestamp = Date.parse(new Date());  
         timestamp = timestamp / 1000 + seconds;  
         uni.setStorageSync(k + postfix, timestamp + "")  
     } else {  
-        uni.removeStorageSync(k + postfix)  
+        uni.removeStorageSync(k + postfix)
     }  
 }  
 
